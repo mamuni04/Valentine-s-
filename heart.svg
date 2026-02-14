@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29">
+  <path
+    d="M16 29
+       C2 17 2 7 8 5
+       C12 3 16 7 16 7
+       C16 7 20 3 24 5
+       C30 7 30 17 16 29 Z"
+    fill="black"
+  />
+</svg>

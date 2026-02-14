@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #ff758c, #ff7eb3);
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: white;
+}
+
+.heart {
+  position: fixed;
+  bottom: -120px;
+  pointer-events: none;
+  animation: floatUp linear infinite;
+  opacity: 0.9;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* HEART SHAPE MASK */
+  -webkit-mask-image: url("heart.svg");
+  -webkit-mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+
+  mask-image: url("heart.svg");
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.7));
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(-120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ================= FALLING PETALS ================= */
+.petal {
+  position: fixed;
+  top: -20px;
+  font-size: 22px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ================= MAIN CONTENT ================= */
+.container {
+  text-align: center;
+  padding: 90px 20px;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  to { text-shadow: 0 0 35px #ffe3ec; }
+}
+
+/* ================= TYPING TEXT ================= */
+.typing {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  border-right: 2px solid white;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 6s steps(45) infinite, blink 0.8s infinite;
+}
+
+@keyframes typing {
+  0% { width: 0; }
+  50% { width: 100%; }
+  100% { width: 0; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* ================= GALLERY ================= */
+.gallery {
+  margin-top: 60px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+  width: 220px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  animation: floatImg 4s ease-in-out infinite;
+  transition: transform 0.6s;
+}
+
+@keyframes floatImg {
+  50% { transform: translateY(-18px); }
+}
+
+.gallery img:hover {
+  transform: scale(1.15) rotate(3deg);
+}
+
+/* ================= LOVE LETTER ================= */
+.letter {
+  margin: 90px auto;
+  max-width: 500px;
+  background: rgba(255,255,255,0.18);
+  padding: 30px;
+  border-radius: 25px;
+  line-height: 1.8;
+  animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.letter h2 {
+  font-family: 'Pacifico', cursive;
+  margin-bottom: 15px;
+}
+
+/* ================= COUNTER ================= */
+.counter {
+  margin-top: 40px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* ================= BUTTON ================= */
+button {
+  margin-top: 60px;
+  padding: 16px 45px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff4f7b;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.1); }
+}
+
+/* ================= POPUP ================= */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup div {
+  background: white;
+  color: #ff4f7b;
+  padding: 45px;
+  border-radius: 30px;
+  max-width: 320px;
+  text-align: center;
+  animation: zoomIn 0.6s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.4); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+<script>
+const heartImages = ["./mamuni14.jpeg", "./raka15.jpeg", "./mamuni2.jpeg"];
+
+for (let i = 0; i < 30; i++) {
+  let h = document.createElement("div");
+  h.className = "heart";
+
+  // RANDOM IMAGE
+  const img = heartImages[Math.floor(Math.random() * heartImages.length)];
+  h.style.backgroundImage = `url(${img})`;
+
+  let size = 50 + Math.random() * 60; // 💥 BIG & CLEAR
+  h.style.width = size + "px";
+  h.style.height = size + "px";
+
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = 7 + Math.random() * 6 + "s";
+  h.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+  document.body.appendChild(h);
+}
+/* ================= PETALS ================= */
+for (let i = 0; i < 25; i++) {
+  let p = document.createElement("div");
+  p.className = "petal";
+  p.innerHTML = "🌹";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDuration = 6 + Math.random() * 6 + "s";
+  document.body.appendChild(p);
+}
+</script>
+<div class="container">
+  <h1>For My Beautiful Girl ❤️</h1>
+  <div class="typing">Loving you is my favorite thing in the world 💕</div>
+
+  <div class="gallery">
+    <img src="./mamuni8.jpg">
+    <img src="./mamuni3.jpg">
+    <img src="./mamuni10.jpg">
+  </div>
+
+  <div class="letter">
+    <h2>My Love Letter 💌</h2>
+    <p>
+      Every day with you feels like a gift I never want to rush through.  
+      You are my peace, my happiness, and my safe place.  
+      No matter what happens in life, my heart will always choose you.
+    </p>
+  </div>
+
+  <div class="counter" id="counter"></div>
+
+  <button onclick="openLove()">One Last Thing 💖</button>
+</div>
+
+<div class="popup" id="popup">
+  <div>
+    <h2>I Love You 💕</h2>
+    <p>I love you my wife</p>
+    <br>
+    <button onclick="closeLove()">Close</button>
+  </div>
+</div>
+
+<script>
+/* ================= LOVE COUNTER ================= */
+const startDate = new Date("2022-08-28"); // CHANGE DATE
+setInterval(() => {
+  const now = new Date();
+  const days = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+  document.getElementById("counter").innerText =
+    `We've been loving each other for ${days} beautiful days ❤️`;
+}, 1000);
+
+function openLove() {
+  document.getElementById("popup").style.display = "flex";
+}
+function closeLove() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
